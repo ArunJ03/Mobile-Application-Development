@@ -1,8 +1,8 @@
-# MAD-EXP-8-Develop-an-Android-Application-to-Display-the-Images-using-Gallery-Control
+# MAD-EXP-10-Develop an Android Application to create a option Menu to Display Menu Items using Android Studio.
 
 ## AIM:
 
-To create a gallery control using android studio to display images or photos.
+To create an option menu to display menu items using Android Studio.
 
 ## EQUIPMENTS REQUIRED:
 
@@ -27,7 +27,7 @@ Step 7: Save and run the application.
 ## PROGRAM:
 ```
 /*
-Program to print the text “GalleryControl”.
+Program to print the text “optionmenu”.
 Developed by: Arun J
 Registration Number: 212221040017
 */
@@ -42,123 +42,55 @@ activity_main.xml :
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        app:layout_constraintBottom_toTopOf="@+id/languagesGallery"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.413"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-    <Gallery
-        android:id="@+id/languagesGallery"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="171dp"
-        android:layout_marginBottom="204dp"
-        android:animationDuration="2000"
-        android:padding="10dp"
-        android:spacing="5dp"
-        android:unselectedAlpha="50"
+        android:text="Hello World!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
+option.xml :
+```
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Item 1" />
+    <item android:title="Item 2" />
+    <item android:title="Item 3" />
+</menu>
+```
 MainActivity.java :
 ```
-package com.example.gallerycontrol;
+package com.example.menuoption;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Gallery;
-import android.widget.ImageView;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 public class MainActivity extends AppCompatActivity {
-    Gallery simpleGallery;
-    CustomizedGalleryAdapter customGalleryAdapter;
-    ImageView selectedImageView;
-    int[] images = {R.drawable.c,R.drawable.c_1,R.drawable.java,R.drawable.python,R.drawable.r,R.drawable.js};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        simpleGallery = (Gallery) findViewById(R.id.languagesGallery);
-// get the reference of ImageView
-        selectedImageView = (ImageView) findViewById(R.id.imageView);
-// initialize the adapter
-        customGalleryAdapter = new CustomizedGalleryAdapter(getApplicationContext(), images);
-// set the adapter for gallery
-        simpleGallery.setAdapter(customGalleryAdapter);
-// Let us do item click of gallery and image can be identified by its position
-        simpleGallery.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-// Whichever image is clicked, that is set in the selectedImageView
-// position will indicate the location of image
-                selectedImageView.setImageResource(images[position]);
-            }
-        });
     }
-}
-```
-CustomizedGalleryAdapter.java :
-```
-package com.example.gallerycontrol;
-
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Gallery;
-import android.widget.ImageView;
-
-public class CustomizedGalleryAdapter extends BaseAdapter {
-    private Context context;
-    private int[] images;
-    public CustomizedGalleryAdapter(Context c, int[] images) {
-        context = c;
-        this.images = images;
-    }
-    // returns the number of images, in our example it is 10
-    public int getCount() {
-        return images.length;
-    }
-    // returns the Item of an item, i.e. for our example we can get the image
-    public Object getItem(int position) {
-        return position;
-    }
-    // returns the ID of an item
-    public long getItemId(int position) {
-        return position;
-    }
-    // returns an ImageView view
-    public View getView(int position, View convertView, ViewGroup parent) {
-// position argument will indicate the location of image
-// create a ImageView programmatically
-        ImageView imageView = new ImageView(context);
-// set image in ImageView
-        imageView.setImageResource(images[position]);
-// set ImageView param
-        imageView.setLayoutParams(new Gallery.LayoutParams(200, 200));
-        return imageView;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater m = getMenuInflater();
+        m.inflate(R.menu.option,menu);
+        return true;
     }
 }
 ```
 ## OUTPUT
 
-![image](https://github.com/Siddarthan999/MAD-EXP-8-Develop-an-Android-Application-to-Display-the-Images-using-Gallery-Control/assets/91734840/31910ea8-3186-4fb4-8aab-d245ad2fecff)
-![image](https://github.com/Siddarthan999/MAD-EXP-8-Develop-an-Android-Application-to-Display-the-Images-using-Gallery-Control/assets/91734840/dda1b1f9-968c-4ae4-af4e-bc830b9213a3)
-![image](https://github.com/Siddarthan999/MAD-EXP-8-Develop-an-Android-Application-to-Display-the-Images-using-Gallery-Control/assets/91734840/ec9b4462-4ada-4ad6-8cc4-56d7762f4b88)
+![image](https://github.com/Siddarthan999/MAD-EXP-10-Develop-an-Android-Application-to-Create-a-Option-Menu-to-Display-Menu-Items/assets/91734840/e5634791-56b4-4011-b3e9-9bb772e79872)
+![image](https://github.com/Siddarthan999/MAD-EXP-10-Develop-an-Android-Application-to-Create-a-Option-Menu-to-Display-Menu-Items/assets/91734840/6b5239b8-2b62-4d17-9949-4658bfa88d68)
+![image](https://github.com/Siddarthan999/MAD-EXP-10-Develop-an-Android-Application-to-Create-a-Option-Menu-to-Display-Menu-Items/assets/91734840/a7b34f8e-93f9-4685-9960-383ad17c271e)
 
 ## RESULT
-Thus, a Simple Android Application to create a gallery control using android studio to display images or photos is developed and executed successfully.
+Thus, a Simple Android Application to create aN option menu to display menu items using Android Studio is developed and executed successfully.
